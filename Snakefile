@@ -1,12 +1,13 @@
 import os
 
 TIMEOUT = 60
-DATASET = "variables____empty_and_clauses____empty_and_variables___1000_and_clauses___1000_and_minisat1m___yes"
+DATASET = "variables____empty_and_clauses____empty_and_variables___10000_and_clauses___10000"
 
 rule all:
     input:
-        "data/results/" + DATASET + "_minisat_stats.csv",
-        "data/results/" + DATASET + "_cnf_metrics.csv",
+        #"data/results/" + DATASET + "_minisat_stats.csv",
+        #"data/results/" + DATASET + "_cnf_metrics.csv",
+        "plots/" + DATASET + "_solvability.pdf"
 
 rule compile_analyzer:
     input:
@@ -115,3 +116,15 @@ rule aggregate_cnf_metrics:
         "Merging metrics CSVs into {output}..."
     script:
         "src/scripts/aggregate_cnf_metrics.py"
+
+rule plot_solvability:
+    input:
+        metrics="data/results/{dataset}_cnf_metrics.csv",
+        meta="data/gbd_meta_flattened.csv"
+    output:
+        pdf="plots/{dataset}_solvability.pdf",
+        png="plots/{dataset}_solvability.png"
+    message:
+        "Plotting solvability for {wildcards.dataset}..."
+    script:
+        "visualization/minisat_percentage.R"

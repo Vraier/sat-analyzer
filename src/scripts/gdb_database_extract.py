@@ -17,7 +17,6 @@ def convert_gbd_to_csv(db_path, output_csv):
     print(f"Connecting to {db_path}...")
     conn = sqlite3.connect(db_path)
 
-    # 1. Get a list of all tables in the SQLite database
     query = "SELECT name FROM sqlite_master WHERE type='table';"
     tables = pd.read_sql_query(query, conn)["name"].tolist()
 
@@ -27,7 +26,6 @@ def convert_gbd_to_csv(db_path, output_csv):
 
     master_df = pd.DataFrame()
 
-    # 2. Iterate through each table, extract data, and merge
     for table in tables:
         df = pd.read_sql_query(f"SELECT * FROM {table}", conn)
 
@@ -46,7 +44,6 @@ def convert_gbd_to_csv(db_path, output_csv):
 
     conn.close()
 
-    # 3. Save the final flattened CSV
     os.makedirs(os.path.dirname(output_csv), exist_ok=True)
     master_df.to_csv(output_csv, index=False)
     print(
@@ -55,14 +52,10 @@ def convert_gbd_to_csv(db_path, output_csv):
 
 
 if __name__ == "__main__":
-    # You can pass arguments, but we'll default to the standard GBD names
     parser = argparse.ArgumentParser(description="Flatten GBD SQLite databases to CSV")
     parser.add_argument("--meta", default="data/meta.db", help="Path to meta.db")
     parser.add_argument("--base", default="data/base.db", help="Path to base.db")
     args = parser.parse_args()
 
-    # Convert meta.db
     convert_gbd_to_csv(args.meta, "data/gbd_meta_flattened.csv")
-
-    # Convert base.db
     convert_gbd_to_csv(args.base, "data/gbd_base_flattened.csv")
