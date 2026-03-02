@@ -1,7 +1,7 @@
 import os
 
 TIMEOUT = 60
-DATASET = "variables____empty_and_clauses____empty_and_variables___1000_and_clauses___1000"
+DATASET = "variables____empty_and_clauses____empty_and_variables___1000_and_clauses___1000_and_minisat1m___yes"
 
 rule all:
     input:
