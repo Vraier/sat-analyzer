@@ -1,5 +1,11 @@
 /data/*
+
 !/data/uris/
+!/data/results/
+
+/data/results/*
+
+!/data/results/*.csv
 
 /.snakemake/
 /build/
