@@ -53,7 +53,7 @@ checkpoint download_dataset:
     shell:
         """
         mkdir -p {output.raw_dir}
-        wget --content-disposition -i {input.uri} -P {output.raw_dir}
+        cat {input.uri} | xargs -P 5 -n 1 wget --content-disposition -q -nc -P {output.raw_dir}        
         """
 
 rule unpack_instance:

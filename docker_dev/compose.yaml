@@ -1,0 +1,8 @@
+services:
+  sat-dev:
+    container_name: sat-dev
+    build: . # use Dockerfile as container
+    working_dir: /app # set working directory
+    volumes:
+      - ../:/app # mount the whole repository into the working directory
+    tty: true # don't close container immediatly after creation
