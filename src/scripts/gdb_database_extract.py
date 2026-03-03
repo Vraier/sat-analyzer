@@ -53,9 +53,13 @@ def convert_gbd_to_csv(db_path, output_csv):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Flatten GBD SQLite databases to CSV")
-    parser.add_argument("--meta", default="data/meta.db", help="Path to meta.db")
-    parser.add_argument("--base", default="data/base.db", help="Path to base.db")
+    parser.add_argument(
+        "--meta", default="data/database/meta.db", help="Path to meta.db"
+    )
+    parser.add_argument(
+        "--base", default="data/database/base.db", help="Path to base.db"
+    )
     args = parser.parse_args()
 
-    convert_gbd_to_csv(args.meta, "data/gbd_meta_flattened.csv")
-    convert_gbd_to_csv(args.base, "data/gbd_base_flattened.csv")
+    convert_gbd_to_csv(args.meta, "data/database/gbd_meta_flattened.csv")
+    convert_gbd_to_csv(args.base, "data/database/gbd_base_flattened.csv")

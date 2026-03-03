@@ -2,10 +2,13 @@
 
 !/data/uris/
 !/data/results/
+!/data/database/
 
 /data/results/*
+/data/database/*
 
 !/data/results/*.csv
+!/data/database/*.csv
 
 /.snakemake/
 /build/
