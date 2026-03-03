@@ -1,13 +1,13 @@
 import os
 
 TIMEOUT = 60
-DATASET = "variables____empty_and_clauses____empty_and_variables___10000_and_clauses___10000"
+DATASET = "variables____empty_and_clauses____empty_and_variables___100000_and_clauses___100000"
 
 rule all:
     input:
-        #"data/results/" + DATASET + "_minisat_stats.csv",
-        #"data/results/" + DATASET + "_cnf_metrics.csv",
-        "plots/" + DATASET + "_solvability.pdf"
+        "data/results/" + DATASET + "_minisat_stats.csv",
+        "data/results/" + DATASET + "_cnf_metrics.csv",
+        #"plots/" + DATASET + "_solvability.pdf"
 
 rule compile_analyzer:
     input:

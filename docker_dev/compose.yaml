@@ -1,7 +1,10 @@
+version: "3.8"
 services:
   sat-dev:
     container_name: sat-dev
-    build: . # use Dockerfile as container
+    build: 
+      context: .. # Move up to the root to find flake.nix
+      dockerfile: docker_dev/Dockerfile
     working_dir: /app # set working directory
     volumes:
       - ../:/app # mount the whole repository into the working directory

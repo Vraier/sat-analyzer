@@ -8,4 +8,3 @@ RUN nix print-dev-env --extra-experimental-features "nix-command flakes" > /dev/
 FROM nixos/nix:latest
 
 WORKDIR /app
-ENTRYPOINT ["nix", "develop", "--extra-experimental-features", "nix-command flakes", "-c"]

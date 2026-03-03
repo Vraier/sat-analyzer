@@ -1,0 +1,6 @@
+.snakemake/
+data/
+plots/
+.git/
+build/
+bin/
